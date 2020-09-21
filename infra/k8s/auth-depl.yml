@@ -15,10 +15,6 @@ spec:
       containers:
         - name: auth
           image: arunjoney994/auth
-          resources:
-            limits:
-              memory: "128Mi"
-              cpu: "500m"
           env:
             - name: JWT_KEY
               valueFrom:
