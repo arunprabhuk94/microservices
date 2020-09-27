@@ -34,4 +34,9 @@ it("creates and saves a ticket", async () => {
   expect(ticket!.price).toBe(data.price);
 });
 
-it("acks the message", async () => {});
+it("acks the message", async () => {
+  const { listener, msg, data } = await setup();
+
+  await listener.onMessage(data, msg);
+  expect(msg.ack).toHaveBeenCalled();
+});
