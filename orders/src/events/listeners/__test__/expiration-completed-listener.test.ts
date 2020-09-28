@@ -31,6 +31,8 @@ const setup = async () => {
   const msg: Message = {
     ack: jest.fn(),
   };
+  //@ts-ignore
+  natsWrapper.client.publish.mockClear();
 
   return { listener, order, ticket, data, msg };
 };
@@ -48,10 +50,15 @@ it("emits an order cancelled event", async () => {
   const { listener, order, ticket, data, msg } = await setup();
 
   await listener.onMessage(data, msg);
+  const publishCall = natsWrapper.client.publish as jest.Mock;
+  const eventData = JSON.parse(publishCall.mock.calls[0][1]);
+  expect(publishCall).toHaveBeenCalled();
+  expect(eventData.id).toBe(order.id);
 });
 
 it("acks the message", async () => {
   const { listener, order, ticket, data, msg } = await setup();
 
   await listener.onMessage(data, msg);
+  expect(msg.ack).toHaveBeenCalled();
 });
