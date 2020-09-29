@@ -1,19 +1,19 @@
-import { useState } from 'react';
-import Router from 'next/router';
+import { useState } from "react";
+import Router from "next/router";
 
-import useRequest from '../../hooks/use-request';
+import useRequest from "../../hooks/use-request";
 
 const Signup = () => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const { errors, doRequest } = useRequest({
-    url: '/api/users/signup',
-    method: 'post',
+    url: "/api/users/signup",
+    method: "post",
     body: {
       email,
       password,
     },
-    onSuccess: () => Router.push('/'),
+    onSuccess: () => Router.push("/"),
   });
 
   const onSubmit = async (e) => {
@@ -23,7 +23,7 @@ const Signup = () => {
   };
 
   return (
-    <div className="container">
+    <div>
       <form action="" onSubmit={onSubmit}>
         <h1>Sign Up</h1>
         <div className="form-group">

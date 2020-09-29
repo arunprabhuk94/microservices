@@ -23,7 +23,7 @@ const Signin = () => {
   };
 
   return (
-    <div className="container">
+    <div>
       <form action="" onSubmit={onSubmit}>
         <h1>Sign In</h1>
         <div className="form-group">

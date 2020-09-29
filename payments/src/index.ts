@@ -8,6 +8,7 @@ import { OrderCancelledListener } from "./events/listeners/order-cancelled-liste
 
 const start = async () => {
   const requiredEnvs = [
+    "STRIPE_KEY",
     "JWT_KEY",
     "MONGO_URI",
     "NATS_CLUSTER_ID",

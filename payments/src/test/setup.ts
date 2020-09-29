@@ -8,14 +8,18 @@ import { app } from "../app";
 declare global {
   namespace NodeJS {
     interface Global {
-      signin(): string[];
+      signin(id?: string): string[];
     }
   }
 }
 
 jest.mock("../nats-wrapper");
+// jest.mock("../stripe");
 
 let mongo: any;
+
+process.env.STRIPE_KEY =
+  "sk_test_51HKytACmZi83IuT4xusb7HAw3bcIr0FsWXI0njdiTmwHinBpUx74bg8V5ouwEU1r0ckcBd6T3po3hactF2kwG0y900PK8PdKHZ";
 beforeAll(async () => {
   process.env.JWT_KEY = "asdfdfd";
 
@@ -41,9 +45,9 @@ afterAll(async () => {
   await mongoose.connection.close();
 });
 
-global.signin = () => {
+global.signin = (id?: string) => {
   const payload = {
-    id: new mongoose.Types.ObjectId(),
+    id: id || new mongoose.Types.ObjectId(),
     email: "test@test.com",
   };
 
