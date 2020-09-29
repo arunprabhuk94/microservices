@@ -8,7 +8,7 @@ import { PaymentCreatedListener } from "./events/listeners/payment-created-liste
 import { ExpirationCompletedListener } from "./events/listeners/expiration-completed-listener";
 
 const start = async () => {
-  console.log("starting");
+  console.log("starting...");
 
   const requiredEnvs = [
     "JWT_KEY",
