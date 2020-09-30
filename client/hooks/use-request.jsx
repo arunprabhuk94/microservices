@@ -8,7 +8,7 @@ const useRequest = ({ url, method, body, onSuccess }) => {
     try {
       const response = await axios[method](url, { ...body, ...props });
       setErrors(null);
-      if (onSuccess) {
+      if (onSuccess) {  
         onSuccess(response.data);
       }
       return response.data;
